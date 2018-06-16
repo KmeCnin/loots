@@ -1,0 +1,3 @@
+sandbox:
+    path: /sandbox
+    controller: App\Controller\SandboxController::index

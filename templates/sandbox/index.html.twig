@@ -1,0 +1,133 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div>
+        <div style="display: inline-block;">
+            {{ form(form) }}
+        </div>
+        <div style="display: inline-block;">
+            <table>
+                <tr>
+                    <th>Race</th>
+                    <th>Fight</th>
+                    <th>Trick</th>
+                    <th>Magic</th>
+                </tr>
+                {% for race, stats in races %}
+                    <tr>
+                        <td>{{ race }}</td>
+                        <td>{{ stats[0] }}</td>
+                        <td>{{ stats[1] }}</td>
+                        <td>{{ stats[2] }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+
+    <hr>
+
+    {% if elapsedSeconds is defined %}
+        <div>
+
+            <div style="display: inline-block;vertical-align: top;padding: 0 15px;">
+                <h2>General</h2>
+                <ul>
+                    <li>Elapsed time: {{ elapsedSeconds }} seconds</li>
+                    <li>Win rate (adventurers): {{ stats.winRate }}%</li>
+                </ul>
+            </div>
+
+            <div style="display: inline-block;vertical-align: top;padding: 0 15px;">
+                <h2>Total rounds</h2>
+                avg {{ stats.averageRounds }}, min {{ stats.minRounds }}, max {{ stats.maxRounds }}
+                <table>
+                    {% for rounds, freq in stats.roundsFreq %}
+                        <tr>
+                            <td>{{ rounds }}</td>
+                            <td>
+                                <div style="display: inline-block;width:200px;">
+                                    <div style="
+                                            display: inline-block;
+                                            background-color:green;
+                                            height:18px;
+                                            width:{{ freq.win }}%;
+                                            ">
+                                    </div><div style="
+                                            display: inline-block;
+                                            background-color:red;
+                                            height:18px;
+                                            width:{{ freq.lose }}%;
+
+                                            ">
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+
+            <div style="display: inline-block;vertical-align: top;padding: 0 15px;">
+                <h2>Rounds mortality</h2>
+                avg {{ stats.averageRounds }}, min {{ stats.minRounds }}, max {{ stats.maxRounds }}
+                <table>
+                    {% for rounds, freq in stats.roundsStackedFreq %}
+                        <tr>
+                            <td>{{ rounds }}</td>
+                            <td>
+                                <div style="display: inline-block;width:200px;">
+                                    <div style="
+                                            display: inline-block;
+                                            background-color:green;
+                                            height:18px;
+                                            width:{{ freq.survived }}%;
+                                            ">
+                                    </div><div style="
+                                            display: inline-block;
+                                            background-color:red;
+                                            height:18px;
+                                            width:{{ freq.died }}%;
+
+                                            ">
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+
+            <div style="display: inline-block;vertical-align: top;padding: 0 15px;">
+                <h2>Stuffs</h2>
+                avg {{ stats.averageStuff }}, min {{ stats.minStuff }}, max {{ stats.maxStuff }}
+                <table>
+                    {% for stuffs, freq in stats.stuffFreq %}
+                        <tr>
+                            <td>{{ stuffs }}</td>
+                            <td>
+                                <div style="display: inline-block;width:200px;">
+                                    <div style="
+                                            display: inline-block;
+                                            background-color:green;
+                                            height:18px;
+                                            width:{{ freq.win }}%;
+                                            ">
+                                    </div><div style="
+                                            display: inline-block;
+                                            background-color:red;
+                                            height:18px;
+                                            width:{{ freq.lose }}%;
+
+                                            ">
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+
+        </div>
+    {%  endif %}
+{% endblock %}
