@@ -18,9 +18,9 @@ class Adventurer extends AbstractPlayer
 
     public $wounds;
 
-    public function __construct(int $fight, int $trick, int $magic, int $cardsToDrawAtStart, int $cardsToDraw)
+    public function __construct(int $fight, int $trick, int $magic, Deck $deck, int $cardsToDrawAtStart, int $cardsToDraw)
     {
-        parent::__construct($cardsToDrawAtStart, $cardsToDraw);
+        parent::__construct($deck, $cardsToDrawAtStart, $cardsToDraw);
 
         $this->fight = $fight;
         $this->trick = $trick;
@@ -28,12 +28,6 @@ class Adventurer extends AbstractPlayer
         $this->alive = true;
         $this->stuff = 0;
         $this->wounds = 0;
-    }
-
-    public function rollBestSkill(array $availableSkills): array
-    {
-        $skill = $this->chooseSkill($availableSkills);
-        return [$skill, $this->roll($this->{$skill} - $availableSkills[$skill])];
     }
 
     public function receiveWound(): void
@@ -56,6 +50,19 @@ class Adventurer extends AbstractPlayer
         $this->wounds--;
     }
 
+    public function resurrect()
+    {
+        if ($this->alive) {
+            throw new \Exception('Not dead (yet).');
+        }
+
+        while ($this->wounds) {
+            $this->healWound();
+        }
+        $this->hand = [];
+        $this->alive = true;
+    }
+
     public function die(): void
     {
         $this->alive = false;
@@ -68,7 +75,30 @@ class Adventurer extends AbstractPlayer
         }
     }
 
-    private function chooseSkill($availableSkills)
+    public function buff(string $skill, int $score): array
+    {
+        $cardsInHand = \count($this->hand);
+        if (!$cardsInHand || Game::scoreIsEnough($score)) {
+            return [];
+        }
+
+        $playedCards = [];
+        $availableGain = 0;
+        foreach ($this->hand as $card) {
+            if ($bonus = $card->bonusSkill($skill) > 0) {
+                $playedCards[] = $card;
+                $availableGain += $card->bonusSkill($skill);
+                if (Game::scoreIsEnough($score + $availableGain)) {
+                    $this->playSomeCards($playedCards);
+                    return $playedCards;
+                }
+            }
+        }
+
+        return [];
+    }
+
+    public function chooseSkill($availableSkills)
     {
         $decisionMap = [];
         foreach ($availableSkills as $skill => $difficulty) {
@@ -77,17 +107,9 @@ class Adventurer extends AbstractPlayer
         return array_search(min($decisionMap), $decisionMap);
     }
 
-    protected function drawOne()
+    public function rollSkill(string $skill): int
     {
-        $set = [
-            [0, 0, 1],
-            [1, 0, 0],
-            [0, 1, 0],
-        ];
-
-        $card = $set[\mt_rand(0, \count($set)-1)];
-
-        $this->hand[] = new Loot($card[0], $card[1], $card[2]);
+        return $this->roll($this->{$skill});
     }
 
     protected function hardUseOne(): AbstractHandCard
@@ -100,10 +122,5 @@ class Adventurer extends AbstractPlayer
         $this->stuff++;
 
         return $cardPlayed;
-    }
-
-    protected function softUseOne(): AbstractHandCard
-    {
-        return \array_pop($this->hand);
     }
 }

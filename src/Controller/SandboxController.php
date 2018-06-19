@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Model\Sandbox\Adventurer;
 use App\Model\Sandbox\Game;
 use App\Model\Sandbox\GameStats;
-use App\Model\Sandbox\GM;
 use App\Model\Sandbox\Parameters;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -44,24 +42,7 @@ class SandboxController extends AbstractController
 
             $stats = new GameStats();
             for ($i = 0; $i < $parameters->iterations; $i++) {
-                $adventurers = [];
-                for ($j = 0; $j < $parameters->numberOfAdventurers; $j++) {
-                    $race = $this->races()[$parameters->race];
-                    $adventurers[] = new Adventurer(
-                        $race[0],
-                        $race[1],
-                        $race[2],
-                        $parameters->adventurersDrawAtStart,
-                        $parameters->adventurersCardsToDraw
-                    );
-                }
-                $game = new Game(
-                    new GM(
-                        $parameters->gmDrawAtStart,
-                        $parameters->gmCardsToDraw
-                    ),
-                    $adventurers
-                );
+                $game = new Game($parameters);
                 $game->play();
                 $stats->update($game);
             }
@@ -80,7 +61,7 @@ class SandboxController extends AbstractController
         ]);
     }
 
-    private function races(): array
+    public static function races(): array
     {
         return [
             'human'     => [1, 1, 0],

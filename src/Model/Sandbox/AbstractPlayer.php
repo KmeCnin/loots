@@ -8,11 +8,15 @@ abstract class AbstractPlayer
 {
     public $cardsToDraw;
 
+    public $deck;
+
+    /** @var AbstractHandCard[] */
     public $hand;
 
-    public function __construct(int $cardsToDrawAtStart, int $cardsToDraw)
+    public function __construct(Deck $deck, int $cardsToDrawAtStart, int $cardsToDraw)
     {
         $this->cardsToDraw = $cardsToDraw;
+        $this->deck = $deck;
         $this->hand = [];
 
         $this->draw($cardsToDrawAtStart);
@@ -42,14 +46,11 @@ abstract class AbstractPlayer
         return $cards;
     }
 
-    public function softUse(int $number): array
+    public function playSomeCards(array $cards): void
     {
-        $cards = [];
-        for ($i = 0; $i < $number; $i++) {
-            $cards[] = $this->softUseOne();
+        foreach ($cards as $card) {
+            $this->playACard($card);
         }
-
-        return $cards;
     }
 
     public static function roll(int $bonus = 0): int
@@ -57,9 +58,17 @@ abstract class AbstractPlayer
         return \mt_rand(1, 6) + $bonus;
     }
 
-    abstract protected function drawOne();
+    protected function drawOne()
+    {
+        $this->hand[] = $this->deck->draw();
+    }
+
+    protected function playACard(AbstractHandCard $card): void
+    {
+        $key = array_search($card, $this->hand);
+        unset($this->hand[$key]);
+        array_values($this->hand);
+    }
 
     abstract protected function hardUseOne();
-
-    abstract protected function softUseOne();
 }

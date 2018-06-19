@@ -8,9 +8,9 @@ class GM extends AbstractPlayer
 {
     public $level;
 
-    public function __construct(int $cardsToDrawAtStart, int $cardsToDraw)
+    public function __construct(Deck $deck, int $cardsToDrawAtStart, int $cardsToDraw)
     {
-        parent::__construct($cardsToDrawAtStart, $cardsToDraw);
+        parent::__construct($deck, $cardsToDrawAtStart, $cardsToDraw);
 
         $this->level = 1;
     }
@@ -32,26 +32,31 @@ class GM extends AbstractPlayer
         }
     }
 
-    protected function drawOne()
-    {
-        $set = [
-            [1, 2, 2],
-            [2, 1, 2],
-            [2, 2, 1],
-        ];
-
-        $card = $set[\mt_rand(0, 2)];
-
-        $this->hand[] = new Test($card[0], $card[1], $card[2]);
-    }
-
     protected function hardUseOne(): AbstractHandCard
     {
         return \array_pop($this->hand);
     }
 
-    protected function softUseOne(): AbstractHandCard
+    public function debuff(string $skill, int $score): array
     {
-        return \array_pop($this->hand);
+        $cardsInHand = \count($this->hand);
+        if (!$cardsInHand || !Game::scoreIsEnough($score)) {
+            return [];
+        }
+
+        $playedCards = [];
+        $availableLose = 0;
+        foreach ($this->hand as $card) {
+            if ($malus = $card->bonusSkill($skill) > 0) {
+                $playedCards[] = $card;
+                $availableLose += $card->bonusSkill($skill);
+                if (!Game::scoreIsEnough($score - $availableLose)) {
+                    $this->playSomeCards($playedCards);
+                    return $playedCards;
+                }
+            }
+        }
+
+        return [];
     }
 }

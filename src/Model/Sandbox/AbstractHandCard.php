@@ -12,10 +12,18 @@ abstract class AbstractHandCard extends AbstractCard
 
     public $magic;
 
-    public function __construct(int $fight, int $trick, int $magic)
+    public $bonusSkill;
+
+    public function __construct(int $fight, int $trick, int $magic, array $bonusSkill)
     {
         $this->fight = $fight;
         $this->trick = $trick;
         $this->magic = $magic;
+        $this->bonusSkill = $bonusSkill;
+    }
+
+    public function bonusSkill(string $skill): int
+    {
+        return $this->bonusSkill[$skill] ?? 0;
     }
 }

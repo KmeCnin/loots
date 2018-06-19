@@ -2,26 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6475967e-6b76-4a28-9fa6-c78231ee44ac" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Controller/SandboxController.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Entity/Place.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Model/Sandbox/AbstractCard.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Model/Sandbox/AbstractHandCard.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Model/Sandbox/AbstractPlace.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Model/Sandbox/AbstractPlayer.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Model/Sandbox/Adventurer.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Model/Sandbox/Boss.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Model/Sandbox/Deck.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Model/Sandbox/GM.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Model/Sandbox/Game.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Model/Sandbox/GameStats.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Model/Sandbox/Layover.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Model/Sandbox/Loot.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Model/Sandbox/Parameters.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Model/Sandbox/Region.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Model/Sandbox/Test.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Model/Sandbox/Util.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Repository/PlaceRepository.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/sandbox/index.html.twig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Model/Sandbox/Skill.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Controller/SandboxController.php" afterPath="$PROJECT_DIR$/src/Controller/SandboxController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Model/Sandbox/AbstractHandCard.php" afterPath="$PROJECT_DIR$/src/Model/Sandbox/AbstractHandCard.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Model/Sandbox/AbstractPlayer.php" afterPath="$PROJECT_DIR$/src/Model/Sandbox/AbstractPlayer.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Model/Sandbox/Adventurer.php" afterPath="$PROJECT_DIR$/src/Model/Sandbox/Adventurer.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Model/Sandbox/Deck.php" afterPath="$PROJECT_DIR$/src/Model/Sandbox/Deck.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Model/Sandbox/GM.php" afterPath="$PROJECT_DIR$/src/Model/Sandbox/GM.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Model/Sandbox/Game.php" afterPath="$PROJECT_DIR$/src/Model/Sandbox/Game.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Model/Sandbox/GameStats.php" afterPath="$PROJECT_DIR$/src/Model/Sandbox/GameStats.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Model/Sandbox/Layover.php" afterPath="$PROJECT_DIR$/src/Model/Sandbox/Layover.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Model/Sandbox/Region.php" afterPath="$PROJECT_DIR$/src/Model/Sandbox/Region.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/sandbox/index.html.twig" afterPath="$PROJECT_DIR$/templates/sandbox/index.html.twig" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -35,33 +29,11 @@
     <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="SandboxController.php" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/Controller/SandboxController.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="483">
-                  <caret line="57" column="30" lean-forward="true" selection-start-line="57" selection-start-column="30" selection-end-line="57" selection-end-column="30" />
-                  <folding>
-                    <element signature="e#60#93#0#PHP" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
           <file leaf-file-name="Layover.php" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/Model/Sandbox/Layover.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="135">
-                  <caret line="9" column="5" lean-forward="false" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Game.php" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/Model/Sandbox/Game.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="468">
-                  <caret line="105" column="48" lean-forward="false" selection-start-line="105" selection-start-column="32" selection-end-line="105" selection-end-column="48" />
+                <state relative-caret-position="330">
+                  <caret line="22" column="24" lean-forward="false" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
                   <folding />
                 </state>
               </provider>
@@ -70,18 +42,18 @@
           <file leaf-file-name="Region.php" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/Model/Sandbox/Region.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="315">
-                  <caret line="30" column="21" lean-forward="true" selection-start-line="30" selection-start-column="21" selection-end-line="30" selection-end-column="21" />
+                <state relative-caret-position="90">
+                  <caret line="6" column="32" lean-forward="false" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Adventurer.php" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/Model/Sandbox/Adventurer.php">
+          <file leaf-file-name="GameStats.php" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/Model/Sandbox/GameStats.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1350">
-                  <caret line="89" column="33" lean-forward="true" selection-start-line="89" selection-start-column="33" selection-end-line="89" selection-end-column="33" />
+                <state relative-caret-position="618">
+                  <caret line="153" column="5" lean-forward="false" selection-start-line="153" selection-start-column="5" selection-end-line="153" selection-end-column="5" />
                   <folding />
                 </state>
               </provider>
@@ -94,67 +66,48 @@
           <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/templates/sandbox/index.html.twig">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="675">
-                  <caret line="71" column="36" lean-forward="false" selection-start-line="71" selection-start-column="36" selection-end-line="71" selection-end-column="36" />
-                  <folding>
-                    <element signature="e#1608#1650#0#HTML" expanded="true" />
-                    <element signature="e#1693#2005#0#HTML" expanded="true" />
-                    <element signature="e#2054#2366#0#HTML" expanded="true" />
-                    <element signature="e#3062#3104#0#HTML" expanded="true" />
-                    <element signature="e#3147#3464#0#HTML" expanded="true" />
-                    <element signature="e#3513#3825#0#HTML" expanded="true" />
-                    <element signature="e#4585#4897#0#HTML" expanded="true" />
-                    <element signature="e#4946#5258#0#HTML" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="GameStats.php" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/Model/Sandbox/GameStats.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="348">
-                  <caret line="92" column="16" lean-forward="false" selection-start-line="92" selection-start-column="8" selection-end-line="92" selection-end-column="16" />
+                <state relative-caret-position="570">
+                  <caret line="38" column="67" lean-forward="false" selection-start-line="38" selection-start-column="67" selection-end-line="38" selection-end-column="67" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Deck.php" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/Model/Sandbox/Deck.php">
+          <file leaf-file-name="Game.php" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/Model/Sandbox/Game.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="390">
-                  <caret line="26" column="42" lean-forward="true" selection-start-line="26" selection-start-column="42" selection-end-line="26" selection-end-column="42" />
+                <state relative-caret-position="-285">
+                  <caret line="127" column="29" lean-forward="true" selection-start-line="127" selection-start-column="29" selection-end-line="127" selection-end-column="29" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Boss.php" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/Model/Sandbox/Boss.php">
+          <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/.gitignore">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="135">
-                  <caret line="9" column="5" lean-forward="true" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
+                <state relative-caret-position="45">
+                  <caret line="3" column="6" lean-forward="false" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Parameters.php" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/Model/Sandbox/Parameters.php">
+          <file leaf-file-name="Adventurer.php" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/Model/Sandbox/Adventurer.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="225">
-                  <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+                <state relative-caret-position="1635">
+                  <caret line="109" column="20" lean-forward="false" selection-start-line="109" selection-start-column="20" selection-end-line="109" selection-end-column="20" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="GM.php" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/Model/Sandbox/GM.php">
+          <file leaf-file-name="AbstractPlayer.php" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/Model/Sandbox/AbstractPlayer.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="255">
-                  <caret line="17" column="29" lean-forward="false" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
+                <state relative-caret-position="840">
+                  <caret line="56" column="5" lean-forward="false" selection-start-line="56" selection-start-column="5" selection-end-line="56" selection-end-column="5" />
                   <folding />
                 </state>
               </provider>
@@ -169,12 +122,24 @@
       <find>\rand(</find>
       <find>var_d</find>
       <find>abs</find>
+      <find>'trick'</find>
+      <find>'fight'</find>
+      <find>'magic'</find>
+      <find>log</find>
+      <find>-&gt;draw</find>
+      <find>roll</find>
+      <find>score</find>
     </findStrings>
     <replaceStrings>
       <replace>\mt_rand(</replace>
+      <replace>Skill::TRICK</replace>
+      <replace>Skill::FIGHT</replace>
+      <replace>Skill::MAGIC</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/src/Model/Sandbox</dir>
+      <dir>$PROJECT_DIR$/src</dir>
+      <dir>$PROJECT_DIR$/src/Model</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -188,7 +153,6 @@
         <option value="$PROJECT_DIR$/src/Repository/PlaceRepository.php" />
         <option value="$PROJECT_DIR$/config/packages/easy_admin.yaml" />
         <option value="$PROJECT_DIR$/src/Entity/PlaceBoss.php" />
-        <option value="$PROJECT_DIR$/src/Entity/Place.php" />
         <option value="$PROJECT_DIR$/config/routes.yaml" />
         <option value="$PROJECT_DIR$/templates/base.html.twig" />
         <option value="$PROJECT_DIR$/src/Model/Sandbox.php" />
@@ -199,25 +163,28 @@
         <option value="$PROJECT_DIR$/src/Model/Sandbox/Loot.php" />
         <option value="$PROJECT_DIR$/src/Model/Sandbox/Test.php" />
         <option value="$PROJECT_DIR$/src/Model/Sandbox/Place.php" />
-        <option value="$PROJECT_DIR$/src/Model/Sandbox/AbstractCard.php" />
         <option value="$PROJECT_DIR$/src/Model/Sandbox/AbstractBoardCard.php" />
-        <option value="$PROJECT_DIR$/src/Model/Sandbox/AbstractHandCard.php" />
         <option value="$PROJECT_DIR$/src/Model/Sandbox/Loot.phpHand" />
         <option value="$PROJECT_DIR$/src/Model/Sandbox/wrand.php" />
         <option value="$PROJECT_DIR$/src/Model/Sandbox/Util.php" />
-        <option value="$PROJECT_DIR$/src/Model/Sandbox/Deck.php" />
-        <option value="$PROJECT_DIR$/src/Model/Sandbox/Layover.php" />
-        <option value="$PROJECT_DIR$/src/Model/Sandbox/GameStats.php" />
-        <option value="$PROJECT_DIR$/templates/sandbox/index.html.twig" />
         <option value="$PROJECT_DIR$/src/Model/Sandbox/AbstractPlace.php" />
-        <option value="$PROJECT_DIR$/src/Model/Sandbox/Parameters.php" />
-        <option value="$PROJECT_DIR$/src/Controller/SandboxController.php" />
-        <option value="$PROJECT_DIR$/src/Model/Sandbox/GM.php" />
-        <option value="$PROJECT_DIR$/src/Model/Sandbox/AbstractPlayer.php" />
-        <option value="$PROJECT_DIR$/src/Model/Sandbox/Game.php" />
-        <option value="$PROJECT_DIR$/src/Model/Sandbox/Region.php" />
         <option value="$PROJECT_DIR$/src/Model/Sandbox/Boss.php" />
+        <option value="$PROJECT_DIR$/src/Controller/SandboxController.php" />
+        <option value="$PROJECT_DIR$/src/Model/Sandbox/AbstractHandCard.php" />
+        <option value="$PROJECT_DIR$/src/Entity/Place.php" />
+        <option value="$PROJECT_DIR$/src/Model/Sandbox/Skill.php" />
+        <option value="$PROJECT_DIR$/src/Model/Sandbox/GM.php" />
+        <option value="$PROJECT_DIR$/src/Model/Sandbox/Parameters.php" />
+        <option value="$PROJECT_DIR$/templates/sandbox/index.html.twig" />
+        <option value="$PROJECT_DIR$/src/Model/Sandbox/Layover.php" />
+        <option value="$PROJECT_DIR$/src/Model/Sandbox/AbstractPlayer.php" />
         <option value="$PROJECT_DIR$/src/Model/Sandbox/Adventurer.php" />
+        <option value="$PROJECT_DIR$/src/Model/Sandbox/Region.php" />
+        <option value="$PROJECT_DIR$/src/Model/Sandbox/AbstractCard.php" />
+        <option value="$PROJECT_DIR$/src/Model/Sandbox/Deck.php" />
+        <option value="$PROJECT_DIR$/src/Model/Sandbox/Game.php" />
+        <option value="$PROJECT_DIR$/src/Model/Sandbox/GameStats.php" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -251,6 +218,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -297,8 +266,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -343,12 +310,15 @@
       <workItem from="1528918429221" duration="6169000" />
       <workItem from="1528932365575" duration="6328000" />
       <workItem from="1528994633059" duration="27661000" />
-      <workItem from="1529088523368" duration="25041000" />
+      <workItem from="1529088523368" duration="30394000" />
+      <workItem from="1529346364985" duration="15872000" />
+      <workItem from="1529362930473" duration="1663000" />
+      <workItem from="1529443128665" duration="817000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="69981000" />
+    <option name="totallyTimeSpent" value="93686000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="1922" height="1055" extended-state="6" />
@@ -358,7 +328,6 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32982087" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -370,6 +339,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32982087" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -386,36 +356,12 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Model/Sandbox/Parameters.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="24" lean-forward="true" selection-start-line="2" selection-start-column="24" selection-end-line="4" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/Sandbox/GM.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="31" column="37" lean-forward="false" selection-start-line="31" selection-start-column="33" selection-end-line="31" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/Sandbox/Adventurer.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="32" column="20" lean-forward="false" selection-start-line="32" selection-start-column="20" selection-end-line="32" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/SandboxController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1020">
           <caret line="68" column="5" lean-forward="false" selection-start-line="68" selection-start-column="5" selection-end-line="68" selection-end-column="5" />
           <folding>
-            <element signature="e#60#93#0#PHP" expanded="true" />
+            <element signature="e#60#87#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -424,16 +370,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="11" column="15" lean-forward="false" selection-start-line="11" selection-start-column="15" selection-end-line="11" selection-end-column="15" />
-          <folding>
-            <element signature="e#1608#1650#0#HTML" expanded="true" />
-            <element signature="e#1693#2005#0#HTML" expanded="true" />
-            <element signature="e#2054#2366#0#HTML" expanded="true" />
-            <element signature="e#3062#3104#0#HTML" expanded="true" />
-            <element signature="e#3147#3464#0#HTML" expanded="true" />
-            <element signature="e#3513#3825#0#HTML" expanded="true" />
-            <element signature="e#4585#4897#0#HTML" expanded="true" />
-            <element signature="e#4946#5258#0#HTML" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -474,7 +411,7 @@
         <state relative-caret-position="540">
           <caret line="40" column="17" lean-forward="false" selection-start-line="40" selection-start-column="17" selection-end-line="40" selection-end-column="17" />
           <folding>
-            <element signature="e#60#93#0#PHP" expanded="true" />
+            <element signature="e#60#87#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -491,16 +428,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="11" column="15" lean-forward="false" selection-start-line="11" selection-start-column="15" selection-end-line="11" selection-end-column="15" />
-          <folding>
-            <element signature="e#1608#1650#0#HTML" expanded="true" />
-            <element signature="e#1693#2005#0#HTML" expanded="true" />
-            <element signature="e#2054#2366#0#HTML" expanded="true" />
-            <element signature="e#3062#3104#0#HTML" expanded="true" />
-            <element signature="e#3147#3464#0#HTML" expanded="true" />
-            <element signature="e#3513#3825#0#HTML" expanded="true" />
-            <element signature="e#4585#4897#0#HTML" expanded="true" />
-            <element signature="e#4946#5258#0#HTML" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -587,7 +515,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="353">
           <caret line="310" column="57" lean-forward="false" selection-start-line="310" selection-start-column="57" selection-end-line="310" selection-end-column="57" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -610,51 +537,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="308">
           <caret line="794" column="9" lean-forward="false" selection-start-line="794" selection-start-column="9" selection-end-line="794" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/sandbox/result.html.twig" />
-    <entry file="file://$PROJECT_DIR$/src/Entity/Place.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="44" column="20" lean-forward="false" selection-start-line="44" selection-start-column="20" selection-end-line="44" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/Sandbox/Test.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="31" lean-forward="false" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/Sandbox/AbstractCard.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="27" lean-forward="false" selection-start-line="6" selection-start-column="15" selection-end-line="6" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/Sandbox/AbstractHandCard.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="18" lean-forward="true" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/Sandbox/Loot.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Model/Sandbox/Util.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -679,117 +565,171 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/Sandbox/Deck.php">
+    <entry file="file://$PROJECT_DIR$/src/Model/Sandbox/Test.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="42" lean-forward="true" selection-start-line="26" selection-start-column="42" selection-end-line="26" selection-end-column="42" />
+        <state relative-caret-position="90">
+          <caret line="6" column="31" lean-forward="true" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="31" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/Sandbox/Layover.php">
+    <entry file="file://$PROJECT_DIR$/src/Model/Sandbox/Loot.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="5" lean-forward="false" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/Sandbox/GameStats.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="348">
-          <caret line="92" column="16" lean-forward="false" selection-start-line="92" selection-start-column="8" selection-end-line="92" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/sandbox/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
-          <caret line="71" column="36" lean-forward="false" selection-start-line="71" selection-start-column="36" selection-end-line="71" selection-end-column="36" />
-          <folding>
-            <element signature="e#1608#1650#0#HTML" expanded="true" />
-            <element signature="e#1693#2005#0#HTML" expanded="true" />
-            <element signature="e#2054#2366#0#HTML" expanded="true" />
-            <element signature="e#3062#3104#0#HTML" expanded="true" />
-            <element signature="e#3147#3464#0#HTML" expanded="true" />
-            <element signature="e#3513#3825#0#HTML" expanded="true" />
-            <element signature="e#4585#4897#0#HTML" expanded="true" />
-            <element signature="e#4946#5258#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/Sandbox/AbstractPlace.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="29" lean-forward="false" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/SandboxController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="57" column="30" lean-forward="true" selection-start-line="57" selection-start-column="30" selection-end-line="57" selection-end-column="30" />
-          <folding>
-            <element signature="e#60#93#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/Sandbox/AbstractPlayer.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/Sandbox/Parameters.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+        <state relative-caret-position="90">
+          <caret line="6" column="31" lean-forward="true" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="31" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Model/Sandbox/Boss.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="5" lean-forward="true" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
+        <state relative-caret-position="180">
+          <caret line="12" column="5" lean-forward="false" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/Place.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="36" lean-forward="false" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/SandboxController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="39" lean-forward="false" selection-start-line="19" selection-start-column="39" selection-end-line="19" selection-end-column="39" />
+          <folding>
+            <element signature="e#60#87#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/Sandbox/Skill.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="10" lean-forward="false" selection-start-line="12" selection-start-column="10" selection-end-line="12" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/doctrine/orm/lib/Doctrine/ORM/Query/Parameter.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-372">
+          <caret line="28" column="6" lean-forward="false" selection-start-line="28" selection-start-column="6" selection-end-line="28" selection-end-column="6" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Model/Sandbox/GM.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="29" lean-forward="false" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
+        <state relative-caret-position="573">
+          <caret line="46" column="26" lean-forward="true" selection-start-line="46" selection-start-column="26" selection-end-line="46" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/Sandbox/Game.php">
+    <entry file="file://$PROJECT_DIR$/templates/sandbox/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="105" column="48" lean-forward="false" selection-start-line="105" selection-start-column="32" selection-end-line="105" selection-end-column="48" />
+        <state relative-caret-position="570">
+          <caret line="38" column="67" lean-forward="false" selection-start-line="38" selection-start-column="67" selection-end-line="38" selection-end-column="67" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/Sandbox/Region.php">
+    <entry file="file://$PROJECT_DIR$/src/Model/Sandbox/Parameters.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="30" column="21" lean-forward="true" selection-start-line="30" selection-start-column="21" selection-end-line="30" selection-end-column="21" />
+        <state relative-caret-position="360">
+          <caret line="24" column="29" lean-forward="false" selection-start-line="24" selection-start-column="29" selection-end-line="24" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/Sandbox/AbstractPlayer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="840">
+          <caret line="56" column="5" lean-forward="false" selection-start-line="56" selection-start-column="5" selection-end-line="56" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Model/Sandbox/Adventurer.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1350">
-          <caret line="89" column="33" lean-forward="true" selection-start-line="89" selection-start-column="33" selection-end-line="89" selection-end-column="33" />
+        <state relative-caret-position="1635">
+          <caret line="109" column="20" lean-forward="false" selection-start-line="109" selection-start-column="20" selection-end-line="109" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/Sandbox/Layover.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="24" lean-forward="false" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/Sandbox/AbstractPlace.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="42" lean-forward="false" selection-start-line="6" selection-start-column="42" selection-end-line="6" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/Sandbox/AbstractHandCard.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" column="5" lean-forward="true" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/Sandbox/Region.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="32" lean-forward="false" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/Sandbox/Deck.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" column="36" lean-forward="true" selection-start-line="25" selection-start-column="36" selection-end-line="25" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/Sandbox/AbstractCard.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="1" lean-forward="false" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/Sandbox/GameStats.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="618">
+          <caret line="153" column="5" lean-forward="false" selection-start-line="153" selection-start-column="5" selection-end-line="153" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/Sandbox/Game.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-285">
+          <caret line="127" column="29" lean-forward="true" selection-start-line="127" selection-start-column="29" selection-end-line="127" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="6" lean-forward="false" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
           <folding />
         </state>
       </provider>

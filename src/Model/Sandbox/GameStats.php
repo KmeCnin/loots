@@ -18,6 +18,10 @@ class GameStats
 
     private $stuffsWin;
 
+    private $adventurersHands;
+
+    private $gmHands;
+
     public function __construct()
     {
         $this->games = 0;
@@ -26,6 +30,8 @@ class GameStats
         $this->roundsWin = [];
         $this->stuffs = [];
         $this->stuffsWin = [];
+        $this->adventurersHands = [];
+        $this->gmHands = [];
     }
 
     public function update(Game $game)
@@ -35,6 +41,11 @@ class GameStats
         foreach ($game->adventurers as $adventurer) {
             $this->stuffs[] = $adventurer->stuff;
         }
+
+        $this->adventurersHands[] = $game->adventurersTotalHand
+            / \count($game->adventurers)
+            / \count($game->places);
+        $this->gmHands[] = $game->gmTotalHand / \count($game->places);
 
         // Win stats.
         if ($game->adventurersWin) {
@@ -137,6 +148,16 @@ class GameStats
         }
 
         return $freqMap;
+    }
+
+    public function averageAdvHands()
+    {
+        return $this->average($this->adventurersHands);
+    }
+
+    public function averageGmHands()
+    {
+        return $this->average($this->gmHands);
     }
 
     private function rate(int $number, int $total = null): int
