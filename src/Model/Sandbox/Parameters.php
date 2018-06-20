@@ -22,7 +22,7 @@ class Parameters
 
     public function __construct()
     {
-        $this->iterations = 50000;
+        $this->iterations = 10000;
         $this->numberOfAdventurers = 1;
         $this->race = 'human';
         $this->gmDrawAtStart = 0;

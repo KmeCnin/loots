@@ -4,12 +4,33 @@ declare(strict_types=1);
 
 namespace App\Model\Sandbox;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 abstract class AbstractPlace extends AbstractCard
 {
-    /** @var AbstractHandCard[] */
-    public $cards;
+    /** @var ArrayCollection|AbstractHandCard[] */
+    protected $cards;
 
-    abstract public function explore(Game $game);
+    public function __construct()
+    {
+        $this->cards = new ArrayCollection();
+    }
 
-    abstract public function settle(Game $game): void;
+    public function addCards(iterable $cards): void
+    {
+        foreach ($cards as $card) {
+            $this->cards->add($card);
+        }
+    }
+
+    abstract public function slotsForTest(Gm $gm): int;
+
+    abstract public function settle(Gm $gm, array $aliveAdventurers): void;
+
+    abstract public function reward(Gm $gm, array $aliveAdventurers): void;
+
+    public function __clone()
+    {
+        $this->cards = new ArrayCollection();
+    }
 }

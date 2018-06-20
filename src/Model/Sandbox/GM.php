@@ -15,26 +15,19 @@ class GM extends AbstractPlayer
         $this->level = 1;
     }
 
-    public function levelUp()
+    public function preparePlaceForAdventurers(AbstractPlace $place, array $adventurers): void
     {
-        $this->level++;
-    }
+        $slotsForTests = $place->slotsForTest($this);
+        $this->draw($slotsForTests + $this->cardsToDraw);
 
-    public function slots(): int
-    {
-        switch (true) {
-            case $this->level > 6:
-                return 3;
-            case $this->level > 3:
-                return 2;
-            default:
-                return 1;
+        if ($slotsForTests > 0) {
+            $place->addCards($this->playTests($slotsForTests, $adventurers));
         }
     }
 
-    protected function hardUseOne(): AbstractHandCard
+    public function levelUp(): void
     {
-        return \array_pop($this->hand);
+        $this->level++;
     }
 
     public function debuff(string $skill, int $score): array
@@ -51,12 +44,43 @@ class GM extends AbstractPlayer
                 $playedCards[] = $card;
                 $availableLose += $card->bonusSkill($skill);
                 if (!Game::scoreIsEnough($score - $availableLose)) {
-                    $this->playSomeCards($playedCards);
+                    $this->playCards($playedCards);
                     return $playedCards;
                 }
             }
         }
 
         return [];
+    }
+
+    private function playTests(int $slots, array $adventurers): array
+    {
+        $bestSkills = [
+            Skill::FIGHT => 0,
+            Skill::TRICK => 0,
+            Skill::MAGIC => 0,
+        ];
+        foreach ($adventurers as $adventurer) {
+            /** @var Adventurer $adventurer */
+            $bestSkills[$adventurer->bestSkill()]++;
+        }
+
+        $bestSkill = \array_search(\max($bestSkills), $bestSkills);
+
+        $tests = [];
+        while (\count($tests) < $slots) {
+            foreach ($this->hand as $test) {
+                /** @var Test $test */
+                if ($test->{$bestSkill} > 0) {
+                    $tests[] = $test;
+                    break;
+                }
+                $tests[] = $test;
+            }
+        }
+
+        $this->playCards($tests);
+
+        return $tests;
     }
 }

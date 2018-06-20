@@ -6,10 +6,6 @@ namespace App\Model\Sandbox;
 
 class Region extends AbstractPlace
 {
-    public $name;
-
-    public $cards;
-
     public $fight;
 
     public $trick;
@@ -18,48 +14,52 @@ class Region extends AbstractPlace
 
     public function __construct()
     {
-        $this->name = uniqid();
-        $this->cards = [];
+        parent::__construct();
+
         $this->fight = 0;
         $this->trick = 0;
         $this->magic = 0;
     }
 
-    public function explore(Game $game)
+    public function slotsForTest(Gm $gm): int
     {
-        $game->gm->draw($game->gm->slots() + $game->gm->cardsToDraw);
-        $this->cards = $game->gm->hardUse($game->gm->slots());
-
-        Game::log(sprintf(
-            'GM adds %d tests to the Region %s [%d, %d, %d].',
-            $game->gm->slots(),
-            $this->name,
-            $this->test(Skill::FIGHT),
-            $this->test(Skill::TRICK),
-            $this->test(Skill::MAGIC)
-        ));
+        switch (true) {
+            case $gm->level > 6:
+                return 3;
+            case $gm->level > 3:
+                return 2;
+            default:
+                return 1;
+        }
     }
 
-    public function settle(Game $game): void
+    public function settle(Gm $gm, array $aliveAdventurers): void
     {
         Game::log(sprintf(
             '%d adventurers are fighting',
-            \count($game->aliveAdventurers())
+            \count($aliveAdventurers)
         ));
 
-        foreach ($game->aliveAdventurers() as $adventurer) {
-            $this->settleFor($adventurer, $game->gm);
+        foreach ($aliveAdventurers as $adventurer) {
+            $this->settleFor($adventurer, $gm);
         }
     }
 
-    protected function test(string $skill): int
+    public function reward(Gm $gm, array $aliveAdventurers): void
     {
-        $test = 0;
-        foreach ($this->cards as $card) {
-            $test += $card->{$skill};
+        foreach ($aliveAdventurers as $adventurer) {
+            $adventurer->draw($adventurer->cardsToDraw);
         }
 
-        $test += $this->{$skill};
+        $gm->levelUp();
+    }
+
+    protected function testDifficulty(string $skill): int
+    {
+        $test = $this->{$skill};
+        foreach ($this->cards->toArray() as $card) {
+            $test += $card->{$skill};
+        }
 
         return $test;
     }
@@ -67,9 +67,9 @@ class Region extends AbstractPlace
     private function settleFor(Adventurer $adv, GM $gm): void
     {
         $availableSkills = [
-            Skill::FIGHT => $this->test(Skill::FIGHT),
-            Skill::TRICK => $this->test(Skill::TRICK),
-            Skill::MAGIC => $this->test(Skill::MAGIC),
+            Skill::FIGHT => $this->testDifficulty(Skill::FIGHT),
+            Skill::TRICK => $this->testDifficulty(Skill::TRICK),
+            Skill::MAGIC => $this->testDifficulty(Skill::MAGIC),
         ];
         while (true) {
             $skillUsed = $adv->chooseSkill($availableSkills);
@@ -96,7 +96,6 @@ class Region extends AbstractPlace
                 if (empty($availableSkills)) {
                     // Death.
                     $adv->die();
-                    $gm->draw(1);
 
                     Game::log('Adventurer died.');
 
@@ -132,7 +131,7 @@ class Region extends AbstractPlace
 
     private function scoreWithBonus(string $skill, int $rawScore): int
     {
-        return $rawScore - $this->test($skill);
+        return $rawScore - $this->testDifficulty($skill);
     }
 
     private function useLootsAsBuff(array $cards): void

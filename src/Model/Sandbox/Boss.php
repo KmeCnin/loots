@@ -6,9 +6,8 @@ namespace App\Model\Sandbox;
 
 class Boss extends Region
 {
-    public function explore(Game $game)
+    public function slots(Gm $gm): int
     {
-        $game->gm->draw(3 + $game->gm->cardsToDraw);
-        $this->cards = $game->gm->hardUse(3);
+        return 3;
     }
 }

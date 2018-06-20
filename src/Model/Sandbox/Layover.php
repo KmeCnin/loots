@@ -6,33 +6,48 @@ namespace App\Model\Sandbox;
 
 class Layover extends AbstractPlace
 {
-    public function explore(Game $game)
+    public function slotsForTest(Gm $gm): int
     {
-        Game::log('Adventurers rest at Layover.');
+        return 0;
     }
 
-    public function settle(Game $game): void
+    public function settle(Gm $gm, array $aliveAdventurers): void
     {
-        foreach ($game->aliveAdventurers() as $adventurer) {
-            $this->settleFor($adventurer, $game->deadAdventurers() );
+        Game::log(sprintf(
+            '%d adventurers are resting',
+            \count($aliveAdventurers)
+        ));
+
+        foreach ($aliveAdventurers as $adventurer) {
+            $this->settleFor($adventurer, $aliveAdventurers);
         }
     }
 
-    private function settleFor(Adventurer $adventurer, array $deadAllies): void
+    public function reward(Gm $gm, array $aliveAdventurers): void
     {
-        // Self healing.
-        while ($adventurer->wounds > 0 && \count($adventurer->hand) > 0) {
-            $adventurer->discard(1);
-            $adventurer->healWound();
-            Game::log('Adventurer healed a wound.');
+        foreach ($aliveAdventurers as $adventurer) {
+            $adventurer->draw($adventurer->cardsToDraw);
         }
 
-        // Resurrect ally.
-        foreach ($deadAllies as $ally) {
+        $gm->levelUp();
+    }
+
+    private function settleFor(Adventurer $adventurer, array $allies): void
+    {
+        foreach ($allies as $ally) {
             /** @var Adventurer $ally */
-            $adventurer->discard(1);
-            $ally->resurrect();
-            Game::log('Adventurer resurrect an ally.');
+            if ($ally->wounds > 0) {
+//                $adventurer->discard(1);
+                $ally->healAllWounds();
+
+                Game::log('An adventurer get healed.');
+            }
+            if (!$ally->alive) {
+//                $adventurer->discard(1);
+                $ally->resurrect();
+
+                Game::log('Adventurer resurrect an ally.');
+            }
         }
     }
 }

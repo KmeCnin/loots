@@ -4,42 +4,53 @@ declare(strict_types=1);
 
 namespace App\Model\Sandbox;
 
-class Deck implements \Countable
+use Doctrine\Common\Collections\ArrayCollection;
+
+class Deck
 {
-    /** @var AbstractCard[] */
+    /** @var ArrayCollection|AbstractCard[] */
     private $cards;
 
     public function __construct(array $cards = [])
     {
-        $this->cards = $cards;
+        $this->cards = new ArrayCollection($cards);
     }
 
     public function add(AbstractCard $card)
     {
-        $this->cards[] = $card;
+        $this->cards->add($card);
     }
 
     public function draw(): AbstractCard
     {
-        $index = mt_rand(0, \count($this->cards)-1);
-        $card = $this->cards[$index];
-        unset($this->cards[$index]);
-        $this->cards = array_values($this->cards);
+        if (!$this->hasCards()) {
+            throw new \Exception('No more card in deck');
+        }
+
+        $index = mt_rand(0, $this->cardsCount() - 1);
+        $cards = \array_values($this->cards->toArray());
+        $card = $cards[$index];
+        $this->cards->removeElement($card);
 
         return $card;
     }
 
-    public function count(): int
+    public function cardsCount(): int
     {
-        return \count($this->cards);
+        return $this->cards->count();
+    }
+
+    public function hasCards(): bool
+    {
+        return !$this->cards->isEmpty();
     }
 
     public function __clone()
     {
-        $cards = $this->cards;
-        $this->cards = [];
-        foreach ($cards as $card) {
-            $this->add(clone $card);
+        $cards = [];
+        foreach ($this->cards->toArray() as $card) {
+            $cards[] = clone $card;
         }
+        $this->cards = new ArrayCollection($cards);
     }
 }

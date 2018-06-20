@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Model\Sandbox;
 
 use App\Controller\SandboxController;
+use Doctrine\Common\Collections\ArrayCollection;
 
 class Game
 {
@@ -34,6 +35,8 @@ class Game
 
     public $gmTotalHand;
 
+    private $players;
+
     public function __construct(Parameters $parameters)
     {
         self::initDeckPlaces();
@@ -45,7 +48,7 @@ class Game
         $this->gm = new GM(
             $this->newDeckTests(),
             $parameters->gmDrawAtStart,
-            $parameters->gmCardsToDraw // + \count($adventurers) - 1
+            $parameters->gmCardsToDraw + $parameters->numberOfAdventurers - 1
         );
 
         $this->places = [];
@@ -65,6 +68,9 @@ class Game
                 $parameters->adventurersCardsToDraw
             );
         }
+
+        $this->players = new ArrayCollection($this->adventurers);
+        $this->players->add($this->gm);
     }
 
     public static function initDeckPlaces(): void
@@ -92,18 +98,39 @@ class Game
         }
 
         $bonus = 2;
+        $a = 1;
+        $b = 1;
+        $c = 2;
 
         self::$canonicalDeckTests = new Deck();
-        for ($i = 0; $i < 20; $i++) {
-            self::$canonicalDeckTests->add(new Test(1, 2, 2, [Skill::FIGHT => $bonus]));
-            self::$canonicalDeckTests->add(new Test(2, 1, 2, [Skill::FIGHT => $bonus]));
-            self::$canonicalDeckTests->add(new Test(2, 2, 1, [Skill::FIGHT => $bonus]));
-            self::$canonicalDeckTests->add(new Test(1, 2, 2, [Skill::TRICK => $bonus]));
-            self::$canonicalDeckTests->add(new Test(2, 1, 2, [Skill::TRICK => $bonus]));
-            self::$canonicalDeckTests->add(new Test(2, 2, 1, [Skill::TRICK => $bonus]));
-            self::$canonicalDeckTests->add(new Test(1, 2, 2, [Skill::MAGIC => $bonus]));
-            self::$canonicalDeckTests->add(new Test(2, 1, 2, [Skill::MAGIC => $bonus]));
-            self::$canonicalDeckTests->add(new Test(2, 2, 1, [Skill::MAGIC => $bonus]));
+        for ($i = 0; $i < 30; $i++) {
+            self::$canonicalDeckTests->add(new Test($a, $b, $c, [
+                Skill::FIGHT => $bonus,
+            ]));
+            self::$canonicalDeckTests->add(new Test($c, $a, $b, [
+                Skill::FIGHT => $bonus
+            ]));
+            self::$canonicalDeckTests->add(new Test($b, $c, $a, [
+                Skill::FIGHT => $bonus
+            ]));
+            self::$canonicalDeckTests->add(new Test($a, $b, $c, [
+                Skill::TRICK => $bonus
+            ]));
+            self::$canonicalDeckTests->add(new Test($c, $a, $b, [
+                Skill::TRICK => $bonus
+            ]));
+            self::$canonicalDeckTests->add(new Test($b, $c, $a, [
+                Skill::TRICK => $bonus
+            ]));
+            self::$canonicalDeckTests->add(new Test($a, $b, $c, [
+                Skill::MAGIC => $bonus
+            ]));
+            self::$canonicalDeckTests->add(new Test($c, $a, $b, [
+                Skill::MAGIC => $bonus
+            ]));
+            self::$canonicalDeckTests->add(new Test($b, $c, $a, [
+                Skill::MAGIC => $bonus
+            ]));
         }
     }
 
@@ -114,18 +141,39 @@ class Game
         }
 
         $bonus = 2;
+        $a = 2;
+        $b = 0;
+        $c = 0;
 
         self::$canonicalDeckLoots = new Deck();
         for ($i = 0; $i < 10; $i++) {
-            self::$canonicalDeckLoots->add(new Loot(2, 0, 0, [Skill::FIGHT => $bonus]));
-            self::$canonicalDeckLoots->add(new Loot(0, 2, 0, [Skill::FIGHT => $bonus]));
-            self::$canonicalDeckLoots->add(new Loot(0, 0, 2, [Skill::FIGHT => $bonus]));
-            self::$canonicalDeckLoots->add(new Loot(2, 0, 0, [Skill::TRICK => $bonus]));
-            self::$canonicalDeckLoots->add(new Loot(0, 2, 0, [Skill::TRICK => $bonus]));
-            self::$canonicalDeckLoots->add(new Loot(0, 0, 2, [Skill::TRICK => $bonus]));
-            self::$canonicalDeckLoots->add(new Loot(2, 0, 0, [Skill::MAGIC => $bonus]));
-            self::$canonicalDeckLoots->add(new Loot(0, 2, 0, [Skill::MAGIC => $bonus]));
-            self::$canonicalDeckLoots->add(new Loot(0, 0, 2, [Skill::MAGIC => $bonus]));
+            self::$canonicalDeckLoots->add(new Loot($a, $b, $c, [
+                Skill::FIGHT => $bonus,
+            ]));
+            self::$canonicalDeckLoots->add(new Loot($c, $a, $b, [
+                Skill::FIGHT => $bonus
+            ]));
+            self::$canonicalDeckLoots->add(new Loot($b, $c, $a, [
+                Skill::FIGHT => $bonus
+            ]));
+            self::$canonicalDeckLoots->add(new Loot($a, $b, $c, [
+                Skill::TRICK => $bonus
+            ]));
+            self::$canonicalDeckLoots->add(new Loot($a, $b, $c, [
+                Skill::TRICK => $bonus
+            ]));
+            self::$canonicalDeckLoots->add(new Loot($b, $c, $a, [
+                Skill::TRICK => $bonus
+            ]));
+            self::$canonicalDeckLoots->add(new Loot($a, $b, $c, [
+                Skill::MAGIC => $bonus
+            ]));
+            self::$canonicalDeckLoots->add(new Loot($c, $a, $b, [
+                Skill::MAGIC => $bonus
+            ]));
+            self::$canonicalDeckLoots->add(new Loot($b, $c, $a, [
+                Skill::MAGIC => $bonus
+            ]));
         }
     }
 
@@ -150,9 +198,9 @@ class Game
             // Phase 1.
             $this->trip();
             // Phase 2.
-            $this->explore();
+            $this->prepare();
             // Phase 3.
-            $this->settle();
+            $this->explore();
             // Phase 4.
             $this->loot();
         }
@@ -224,47 +272,93 @@ class Game
 
     private function trip(): void
     {
-        $newPlace = $this->deckPlaces->draw();
+        $placesToDraw = 2;
+        /** @var AbstractPlace[] $challengers */
+        $challengers = [];
 
-        if ($newPlace instanceof Layover && !$this->anAdventurerNeedsHealthCare()) {
-            // Avoid Layover.
-            $nope = clone $newPlace;
-            $newPlace = $this->deckPlaces->draw();
-            $this->deckPlaces->add($nope);
+        for ($i = 0; $i < $placesToDraw; $i++) {
+            if ($this->deckPlaces->hasCards()) {
+                $challengers[] = $this->deckPlaces->draw();
+            }
         }
 
-        if ($newPlace instanceof Boss && $this->gm->slots() < 3) {
-            // Avoid Boss.
-            $toSoon = clone $newPlace;
-            $newPlace = $this->deckPlaces->draw();
-            $this->deckPlaces->add($toSoon);
+        // Go to Layover if needed.
+        if ($this->anAdventurerNeedsHealthCare()) {
+            foreach ($challengers as $place) {
+                if ($place instanceof Layover) {
+                    $placeToMove = $place;
+                    goto move;
+                }
+            }
         }
 
-        $this->places[] = $newPlace;
+        // Avoid Boss if GM not level max.
+        foreach ($challengers as $place) {
+            if ($place->slotsForTest($this->gm) < 3) {
+                $placeToMove = $place;
+                goto move;
+            }
+        }
+
+        // Go to Boss if GM level max.
+        foreach ($challengers as $place) {
+            if ($place instanceof Boss) {
+                $placeToMove = $place;
+                goto move;
+            }
+        }
+
+        // Go to not Layover place.
+        foreach ($challengers as $place) {
+            if (!$place instanceof Layover) {
+                $placeToMove = $place;
+                goto move;
+            }
+        }
+
+        // Get a random place.
+        $placeToMove = $challengers[mt_rand(0, \count($challengers)  - 1)];
+
+        move:
+        foreach ($challengers as $place) {
+            if ($placeToMove === $place) {
+                self::log(sprintf('Moving to place %s', get_class($place)));
+
+                $this->places[] = $place;
+            } else {
+                $this->deckPlaces->add($place);
+            }
+        }
+    }
+
+    private function prepare(): void
+    {
+        // Adventurers equip themselves.
+        foreach ($this->aliveAdventurers() as $adventurer) {
+            $adventurer->equip();
+        }
+
+        // GM add the tests to the current place.
+        $this->gm->preparePlaceForAdventurers(
+            $this->currentPlace(),
+            $this->aliveAdventurers()
+        );
     }
 
     private function explore(): void
     {
-        foreach ($this->adventurers as $adventurer) {
-            $adventurer->equip();
-        }
-        $this->currentPlace()->explore($this);
-    }
+        $this->snapshotHandsCounts();
 
-    private function settle(): void
-    {
-        foreach ($this->adventurers as $adventurer) {
-            $this->adventurersTotalHand += \count($adventurer->hand);
-        }
-        $this->gmTotalHand += \count($this->gm->hand);
+        // Adventurers try to explore the current place one by one.
+        $this->currentPlace()->settle($this->gm, $this->aliveAdventurers());
 
-        $this->currentPlace()->settle($this);
         // Lose.
         if (0 === \count($this->aliveAdventurers())) {
             $this->ended = true;
             $this->adventurersWin = false;
             return;
         }
+
         // Win.
         if ($this->currentPlace() instanceof Boss) {
             $this->ended = true;
@@ -275,11 +369,14 @@ class Game
 
     private function loot(): void
     {
-        if ($this->currentPlace() instanceof Region) {
-            foreach ($this->aliveAdventurers() as $adventurer) {
-                $adventurer->draw($adventurer->cardsToDraw);
-            }
+        $this->currentPlace()->reward($this->gm, $this->aliveAdventurers());
+    }
+
+    private function snapshotHandsCounts()
+    {
+        foreach ($this->adventurers as $adventurer) {
+            $this->adventurersTotalHand += $adventurer->handCount();
         }
-        $this->gm->levelUp();
+        $this->gmTotalHand += $this->gm->handCount();
     }
 }

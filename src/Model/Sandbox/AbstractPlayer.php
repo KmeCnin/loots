@@ -4,25 +4,29 @@ declare(strict_types=1);
 
 namespace App\Model\Sandbox;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 abstract class AbstractPlayer
 {
+    /** @var int */
     public $cardsToDraw;
 
-    public $deck;
+    /** @var ArrayCollection|AbstractHandCard[] */
+    protected $hand;
 
-    /** @var AbstractHandCard[] */
-    public $hand;
+    /** @var Deck */
+    private $deck;
 
     public function __construct(Deck $deck, int $cardsToDrawAtStart, int $cardsToDraw)
     {
         $this->cardsToDraw = $cardsToDraw;
         $this->deck = $deck;
-        $this->hand = [];
+        $this->hand = new ArrayCollection();
 
         $this->draw($cardsToDrawAtStart);
     }
 
-    public function draw(int $number)
+    public function draw(int $number = 1)
     {
         for ($i = 0; $i < $number; $i++) {
             $this->drawOne();
@@ -32,24 +36,14 @@ abstract class AbstractPlayer
     public function discard(int $number)
     {
         for ($i = 0; $i < $number; $i++) {
-            \array_pop($this->hand);
+            $this->hand->removeElement($this->hand->last());
         }
     }
 
-    public function hardUse(int $number): array
-    {
-        $cards = [];
-        for ($i = 0; $i < $number; $i++) {
-            $cards[] = $this->hardUseOne();
-        }
-
-        return $cards;
-    }
-
-    public function playSomeCards(array $cards): void
+    public function playCards(array $cards): void
     {
         foreach ($cards as $card) {
-            $this->playACard($card);
+            $this->playCard($card);
         }
     }
 
@@ -58,17 +52,18 @@ abstract class AbstractPlayer
         return \mt_rand(1, 6) + $bonus;
     }
 
+    public function handCount(): int
+    {
+        return $this->hand->count();
+    }
+
     protected function drawOne()
     {
-        $this->hand[] = $this->deck->draw();
+        $this->hand->add($this->deck->draw());
     }
 
-    protected function playACard(AbstractHandCard $card): void
+    protected function playCard(AbstractHandCard $card): void
     {
-        $key = array_search($card, $this->hand);
-        unset($this->hand[$key]);
-        array_values($this->hand);
+        $this->hand->removeElement($card);
     }
-
-    abstract protected function hardUseOne();
 }

@@ -38,6 +38,13 @@ class Adventurer extends AbstractPlayer
         $this->wounds++;
     }
 
+    public function healAllWounds(): void
+    {
+        for ($i = 0; $i < $this->wounds; $i++) {
+            $this->healWound();
+        }
+    }
+
     public function healWound(): void
     {
         if ($this->wounds < 1) {
@@ -70,8 +77,8 @@ class Adventurer extends AbstractPlayer
 
     public function equip()
     {
-        if (\count($this->hand) && $this->stuff < 3) {
-            $this->hardUse(1);
+        if ($this->hand->count() && $this->stuff < 3) {
+            $this->equipBestLoot();
         }
     }
 
@@ -89,7 +96,7 @@ class Adventurer extends AbstractPlayer
                 $playedCards[] = $card;
                 $availableGain += $card->bonusSkill($skill);
                 if (Game::scoreIsEnough($score + $availableGain)) {
-                    $this->playSomeCards($playedCards);
+                    $this->playCards($playedCards);
                     return $playedCards;
                 }
             }
@@ -98,7 +105,7 @@ class Adventurer extends AbstractPlayer
         return [];
     }
 
-    public function chooseSkill($availableSkills)
+    public function chooseSkill(iterable $availableSkills)
     {
         $decisionMap = [];
         foreach ($availableSkills as $skill => $difficulty) {
@@ -112,15 +119,39 @@ class Adventurer extends AbstractPlayer
         return $this->roll($this->{$skill});
     }
 
-    protected function hardUseOne(): AbstractHandCard
+    public function bestSkill(): string
     {
-        /** @var Loot $cardPlayed */
-        $cardPlayed = \array_pop($this->hand);
-        $this->fight += $cardPlayed->fight;
-        $this->trick += $cardPlayed->trick;
-        $this->magic += $cardPlayed->magic;
-        $this->stuff++;
+        $skills = [
+            Skill::FIGHT => $this->fight,
+            Skill::TRICK => $this->trick,
+            Skill::MAGIC => $this->magic,
+        ];
+        return \array_search(\max($skills), $skills);
+    }
 
-        return $cardPlayed;
+    private function equipBestLoot(): void
+    {
+        $bestSkill = $this->bestSkill();
+
+        foreach ($this->hand as $loot) {
+            /** @var Loot $loot */
+            if ($loot->{$bestSkill} > 0) {
+                $this->equipCard($loot);
+                return;
+            }
+        }
+
+        $this->equipCard($this->hand->first());
+        return;
+    }
+
+    private function equipCard(Loot $loot): void
+    {
+        $this->playCard($loot);
+
+        $this->fight += $loot->fight;
+        $this->trick += $loot->trick;
+        $this->magic += $loot->magic;
+        $this->stuff++;
     }
 }
